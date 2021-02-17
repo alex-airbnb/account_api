@@ -51,15 +51,15 @@ workflows:
       - run_linter:
           filters:
             branches:
-              ignore: main
+              ignore: master
       - run_tests:
           filters:
             branches:
-              ignore: main
+              ignore: master
       - run_codecov:
           filters:
             branches:
-              ignore: main
+              ignore: master
           requires:
             - run_tests
 
@@ -68,8 +68,8 @@ workflows:
       - generate_release:
           filters:
             branches:
-              only: main
+              only: master
       - run_codecov:
           filters:
             branches:
-              only: main
+              only: master

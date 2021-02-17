@@ -1,4 +1,4 @@
-branch: main
+branch: master
 repositoryUrl: https://github.com/alex-airbnb/account_api
 plugins:
     - '@semantic-release/commit-analyzer'

@@ -4,6 +4,7 @@ import (
 	"errors"
 
 	"github.com/go-playground/validator"
+	"gorm.io/gorm"
 )
 
 // ErrInvalidEmail Invalid Email Error
@@ -14,6 +15,7 @@ type Account struct {
 	Email    string `validate:"email"`
 	LastName string
 	Name     string
+	gorm.Model
 }
 
 // CreateAccount Create a new Account

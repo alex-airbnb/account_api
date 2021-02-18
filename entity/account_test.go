@@ -10,7 +10,7 @@ func TestAccount(t *testing.T) {
 	g := goblin.Goblin(t)
 
 	g.Describe("CreateAccount Entity", func() {
-		g.Describe("when the email, lastName, and name are valid", func() {
+		g.Describe("when the email is valid", func() {
 			g.It("it should create a account", func() {
 				expectedAccount := Account{
 					Email:    "account@mail.com",

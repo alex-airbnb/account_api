@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 
+	"github.com/alex-airbnb/account_api/adapter"
 	"github.com/alex-airbnb/account_api/entity"
 	"github.com/go-playground/validator"
 )
@@ -17,7 +18,9 @@ var (
 )
 
 // AccountREST Driving Adapter for the AccountUseCase Port to implement REST.
-type AccountREST struct{}
+type AccountREST struct {
+	Repository adapter.RepositoryPort
+}
 
 // CreateAccountRequest Request for the CreateAccount method.
 type CreateAccountRequest struct {
@@ -52,6 +55,10 @@ func (a *AccountREST) CreateAccount(req []byte) (CreateAccountResponse, error) {
 	)
 
 	if err != nil {
+		return CreateAccountResponse{}, err
+	}
+
+	if err := a.Repository.Create(account); err != nil {
 		return CreateAccountResponse{}, err
 	}
 

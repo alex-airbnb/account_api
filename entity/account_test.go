@@ -6,7 +6,7 @@ import (
 	"github.com/franela/goblin"
 )
 
-func TestAccount(t *testing.T) {
+func TestAccountEntity(t *testing.T) {
 	g := goblin.Goblin(t)
 
 	g.Describe("CreateAccount Entity", func() {

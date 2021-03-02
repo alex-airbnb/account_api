@@ -16,16 +16,14 @@ func (r *repositoryMock) Create(model interface{}) error {
 	return createMockFunction(model)
 }
 
-func TestAccount(t *testing.T) {
+func TestAccountUseCase(t *testing.T) {
 	g := goblin.Goblin(t)
 
 	g.Describe("CreateAccountREST Use Case", func() {
 		g.Describe("when the request is valid", func() {
 			g.Describe("when the Repository can save the account", func() {
 				g.It("it should create an account and return a result", func() {
-					a := &AccountREST{
-						Repository: &repositoryMock{},
-					}
+					a := NewAccountREST(&repositoryMock{})
 					createMockFunction = func(m interface{}) error {
 						return nil
 					}
@@ -48,9 +46,7 @@ func TestAccount(t *testing.T) {
 
 			g.Describe("when the Repository can't save the account", func() {
 				g.It("it should return RepositoryCreate error", func() {
-					a := &AccountREST{
-						Repository: &repositoryMock{},
-					}
+					a := NewAccountREST(&repositoryMock{})
 					errCreate := errors.New("Repository Create Error")
 					createMockFunction = func(m interface{}) error {
 						return errCreate
@@ -71,7 +67,7 @@ func TestAccount(t *testing.T) {
 
 		g.Describe("when the request JSON is invalid", func() {
 			g.It("it should return InvalidJSONFormat error", func() {
-				a := &AccountREST{}
+				a := NewAccountREST(&repositoryMock{})
 				req := []byte(`{
 					"email": "account@mail.com",
 					"lastName": "lastName",
@@ -87,7 +83,7 @@ func TestAccount(t *testing.T) {
 
 		g.Describe("when the request has a missing required property", func() {
 			g.It("it should return MissingRequiredProperty error", func() {
-				a := &AccountREST{}
+				a := NewAccountREST(&repositoryMock{})
 				req := []byte(`{
 					"email": "account@mail.com",
 					"lastName": "lastName"
@@ -102,7 +98,7 @@ func TestAccount(t *testing.T) {
 
 		g.Describe("when the email is invalid", func() {
 			g.It("it should return MissingRequiredProperty error", func() {
-				a := &AccountREST{}
+				a := NewAccountREST(&repositoryMock{})
 				req := []byte(`{
 					"email": "account_mail.com",
 					"lastName": "lastName",

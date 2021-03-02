@@ -17,8 +17,7 @@ var (
 	ErrMissingRequiredProperty = errors.New("Missing Required Property")
 )
 
-// AccountREST Driving Adapter for the AccountUseCase Port to implement REST.
-type AccountREST struct {
+type accountREST struct {
 	Repository adapter.RepositoryPort
 }
 
@@ -35,8 +34,15 @@ type CreateAccountResponse struct {
 	ID    uint
 }
 
+// NewAccountREST Create a new instance of AccountREST Use Case.
+func NewAccountREST(r adapter.RepositoryPort) UseCase {
+	return &accountREST{
+		Repository: r,
+	}
+}
+
 // CreateAccount AccountREST Use Case method.
-func (a *AccountREST) CreateAccount(req []byte) (CreateAccountResponse, error) {
+func (a *accountREST) CreateAccount(req []byte) (interface{}, error) {
 	var createAccountRequest CreateAccountRequest
 	validate := validator.New()
 

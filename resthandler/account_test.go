@@ -7,9 +7,18 @@ import (
 	"net/http"
 	"testing"
 
+	"github.com/alex-airbnb/account_api/usecase"
 	"github.com/franela/goblin"
 	"github.com/gofiber/fiber/v2"
 )
+
+var createMockFunction func(model interface{}) error
+
+type repositoryMock struct{}
+
+func (r *repositoryMock) Create(model interface{}) error {
+	return createMockFunction(model)
+}
 
 func TestAccountRESTHandler(t *testing.T) {
 	g := goblin.Goblin(t)
@@ -18,8 +27,12 @@ func TestAccountRESTHandler(t *testing.T) {
 		g.Describe("POST /account", func() {
 			g.Describe("when the body is valid", func() {
 				g.It("it should response Created with the account info", func() {
-					var restHandler *fiber.App = Setup()
 					var currentResponseBody response
+					var a usecase.UseCase = usecase.NewAccountREST(&repositoryMock{})
+					createMockFunction = func(m interface{}) error {
+						return nil
+					}
+					var r *fiber.App = NewRESTHandler(a)
 					expectedResponseBody := response{
 						Data:       0,
 						Error:      false,
@@ -37,7 +50,7 @@ func TestAccountRESTHandler(t *testing.T) {
 						}`)),
 					)
 
-					res, err := restHandler.Test(req, -1)
+					res, err := r.Test(req, -1)
 					body, _ := ioutil.ReadAll(res.Body)
 
 					json.Unmarshal(body, &currentResponseBody)

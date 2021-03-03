@@ -6,11 +6,11 @@ import (
 )
 
 type response struct {
-	Data       int    `json:"data"`
-	Error      bool   `json:"error"`
-	Message    string `json:"message"`
-	Status     string `json:"status"`
-	StatusCode int    `json:"statusCode"`
+	Data       interface{} `json:"data"`
+	Error      bool        `json:"error"`
+	Message    string      `json:"message"`
+	Status     string      `json:"status"`
+	StatusCode int         `json:"statusCode"`
 }
 
 // NewRESTHandler Set up a new Fiber App.

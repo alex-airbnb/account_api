@@ -30,8 +30,8 @@ type CreateAccountRequest struct {
 
 // CreateAccountResponse Response for the CreateAccount method.
 type CreateAccountResponse struct {
-	Email string
-	ID    uint
+	Email string `json:"email"`
+	ID    uint   `json:"id"`
 }
 
 // NewAccountREST Create a new instance of AccountREST Use Case.

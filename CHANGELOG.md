@@ -1,3 +1,11 @@
+# [1.2.0](https://github.com/alex-airbnb/account_api/compare/v1.1.0...v1.2.0) (2021-03-05)
+
+
+### Features
+
+* Add NewPostgres to the adapter package. ([e6c5f2d](https://github.com/alex-airbnb/account_api/commit/e6c5f2d83eb6d2ac5db2006ae626420eb5f969f4))
+* Add Postgres and SetUpPostgres to client package. ([be00630](https://github.com/alex-airbnb/account_api/commit/be0063095e973f0f05811a48c62670f5d52ac349))
+
 # [1.1.0](https://github.com/alex-airbnb/account_api/compare/v1.0.0...v1.1.0) (2021-03-03)
 
 

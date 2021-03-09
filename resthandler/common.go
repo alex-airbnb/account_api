@@ -16,7 +16,7 @@ type response struct {
 // NewRESTHandler Set up a new Fiber App.
 func NewRESTHandler(accountUseCase usecase.UseCase) *fiber.App {
 	app := fiber.New()
-	accountGroup := app.Group("/account")
+	accountGroup := app.Group("/api/v1/account")
 
 	AccountRouter(accountGroup, accountUseCase)
 

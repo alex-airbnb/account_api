@@ -1,0 +1,17 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:13.1
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: account_user
+      POSTGRES_PASSWORD: YWNjb3VudF91c2Vy
+      POSTGRES_DB: account_db
+    volumes:
+      - postgres:/var/lib/postgresql/data
+
+volumes:
+  postgres: ~

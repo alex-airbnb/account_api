@@ -64,7 +64,7 @@ func (a *accountREST) CreateAccount(req []byte) (interface{}, error) {
 		return CreateAccountResponse{}, err
 	}
 
-	if err := a.Repository.Create(account); err != nil {
+	if err := a.Repository.Create(&account); err != nil {
 		return CreateAccountResponse{}, err
 	}
 

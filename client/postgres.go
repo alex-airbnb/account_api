@@ -8,12 +8,9 @@ import (
 	"gorm.io/gorm"
 )
 
-// Postgres Postgres DB Instance.
-var Postgres *gorm.DB
-
 // SetUpPostgres Set up the Postgres DB Instance.
-func SetUpPostgres() error {
-	Postgres, err := gorm.Open(
+func SetUpPostgres() (*gorm.DB, error) {
+	db, err := gorm.Open(
 		postgres.Open(
 			os.Getenv("DB_URL"),
 		),
@@ -21,12 +18,12 @@ func SetUpPostgres() error {
 	)
 
 	if err != nil {
-		return err
+		return db, err
 	}
 
-	migrate(Postgres)
+	migrate(db)
 
-	return nil
+	return db, err
 }
 
 func migrate(db *gorm.DB) {

@@ -1,3 +1,22 @@
+# [1.3.0](https://github.com/alex-airbnb/account_api/compare/v1.2.0...v1.3.0) (2021-03-09)
+
+
+### Bug Fixes
+
+* Pass the article as pointer in the Account REST Use Case. ([ae3b61a](https://github.com/alex-airbnb/account_api/commit/ae3b61a533e0dfb5653a9d5f405753a73746875f))
+
+
+### Features
+
+* Add and run the REST Handler. ([7286d3d](https://github.com/alex-airbnb/account_api/commit/7286d3d118d4a7a387869b33bca77b88ace7e3b1))
+* Add docker-compose-dependencies file. ([6302012](https://github.com/alex-airbnb/account_api/commit/630201279c9219b3291d4eec6373b5cacc949035))
+
+
+### Performance Improvements
+
+* Refactor SetUpPostgres function to return a db instance. ([dcdc569](https://github.com/alex-airbnb/account_api/commit/dcdc5693dbd1a415d22ef4ffb4250f1a25f7b6bb))
+* Update the route for the account handlers. ([db85deb](https://github.com/alex-airbnb/account_api/commit/db85deb0a81b129c89b62384023e280bec66b4b2))
+
 # [1.2.0](https://github.com/alex-airbnb/account_api/compare/v1.1.0...v1.2.0) (2021-03-05)
 
 

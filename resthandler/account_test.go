@@ -25,7 +25,7 @@ func TestAccountRESTHandler(t *testing.T) {
 	g := goblin.Goblin(t)
 
 	g.Describe("Account REST Handler", func() {
-		g.Describe("POST /account", func() {
+		g.Describe("POST /api/v1/account", func() {
 			var currentResponseBody response
 			var a usecase.UseCase = usecase.NewAccountREST(&repositoryMock{})
 			createMockFunction = func(m interface{}) error {
@@ -47,7 +47,7 @@ func TestAccountRESTHandler(t *testing.T) {
 					}
 					req, _ := http.NewRequest(
 						"POST",
-						"/account",
+						"/api/v1/account",
 						bytes.NewBuffer([]byte(`{
 							"email": "account@mail.com",
 							"lastName": "lastName",
@@ -80,7 +80,7 @@ func TestAccountRESTHandler(t *testing.T) {
 					}
 					req, _ := http.NewRequest(
 						"POST",
-						"/account",
+						"/api/v1/account",
 						bytes.NewBuffer([]byte(`{
 							"email": "account@mail.com",
 							"lastName": "lastName",
@@ -113,7 +113,7 @@ func TestAccountRESTHandler(t *testing.T) {
 					}
 					req, _ := http.NewRequest(
 						"POST",
-						"/account",
+						"/api/v1/account",
 						bytes.NewBuffer([]byte(`{
 							"email": "account@mail.com",
 							"lastName": "lastName",
@@ -149,7 +149,7 @@ func TestAccountRESTHandler(t *testing.T) {
 					}
 					req, _ := http.NewRequest(
 						"POST",
-						"/account",
+						"/api/v1/account",
 						bytes.NewBuffer([]byte(`{
 							"email": "account@mail.com",
 							"lastName": "lastName",

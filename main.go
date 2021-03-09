@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 	"os/signal"
+	"syscall"
 
 	"github.com/alex-airbnb/account_api/adapter"
 	"github.com/alex-airbnb/account_api/client"
@@ -17,15 +18,15 @@ func main() {
 		log.Panic(err)
 	}
 
-	go func() {
-		if err := client.SetUpPostgres(); err != nil {
-			log.Panic(err)
-		}
-	}()
+	postgresDB, err := client.SetUpPostgres()
+
+	if err != nil {
+		log.Panic(err)
+	}
 
 	app := resthandler.NewRESTHandler(
 		usecase.NewAccountREST(
-			adapter.NewPostgres(client.Postgres),
+			adapter.NewPostgres(postgresDB),
 		),
 	)
 
@@ -37,12 +38,9 @@ func main() {
 
 	shutdownChannnel := make(chan os.Signal)
 
-	signal.Notify(shutdownChannnel, os.Interrupt)
-	signal.Notify(shutdownChannnel, os.Kill)
+	signal.Notify(shutdownChannnel, os.Interrupt, os.Kill, syscall.SIGTERM)
 
 	shutdownNotification := <-shutdownChannnel
 
 	log.Println("Received Shutdown Notification", shutdownNotification)
-
-	app.Shutdown()
 }
